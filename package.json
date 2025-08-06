@@ -1,0 +1,101 @@
+{
+  "name": "fcrape",
+  "version": "0.1.0",
+  "description": "fast, scalable scraper with multi-proxy, smart rotation, plugin support, and 3rd party captcha solving.",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs && npm run build:types",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:types": "tsc --project tsconfig.types.json",
+    "dev": "npm run build:esm -- --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build && npm run test && npm run lint"
+  },
+  "keywords": [
+    "scrape",
+    "scraping",
+    "web-scraping",
+    "crawler",
+    "web-crawler",
+    "typescript",
+    "nodejs",
+    "proxy",
+    "rate-limiting",
+    "anti-bot"
+  ],
+  "author": {
+    "name": "fatih guzel",
+    "email": "hello@fatihguzel.dev",
+    "url": "https://fatihguzel.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fatihguzeldev/fcrape.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fcrape/fcrape/issues"
+  },
+  "homepage": "https://github.com/fcrape/fcrape#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "18.4.3",
+    "@commitlint/config-conventional": "18.4.3",
+    "@swc/jest": "0.2.29",
+    "@types/jest": "29.5.8",
+    "@types/node": "20.8.10",
+    "@typescript-eslint/eslint-plugin": "8.0.0",
+    "@typescript-eslint/parser": "8.0.0",
+    "eslint": "9.0.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-jest": "29.0.1",
+    "eslint-plugin-prettier": "5.0.1",
+    "husky": "8.0.3",
+    "jest": "30.0.0",
+    "lint-staged": "15.5.2",
+    "prettier": "3.1.0",
+    "rimraf": "5.0.5",
+    "typescript": "5.2.2"
+  },
+  "dependencies": {
+    "axios": "1.11.0",
+    "cheerio": "1.0.0-rc.12"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
